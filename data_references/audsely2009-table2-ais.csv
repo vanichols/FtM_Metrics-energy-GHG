@@ -1,0 +1,12 @@
+﻿retracing intern's steps for calculating energy embedded in pesticides,,,,
+looking at Table 2 from audsely et al. 2009,,,,
+"only pulling them out as they appear in his spreadsheet, would be nice to digitize the entire table",,,,
+,,,,
+,,,,
+ai,in_audsley,energy_MJkg,intern_MJkg,notes
+glyphosate,y,454,454,
+atrazine,y,188.3,188,
+acetochlor,n,NA,275.8,intern must have assumed this is the same as s-metolachlor
+metolachlor,y,275.8,275.8,assumed same as s-metolachlor
+"2,4-d",y,87,87,
+dicamba,Y,295,295,

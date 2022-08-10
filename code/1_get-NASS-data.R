@@ -15,7 +15,7 @@ nass_set_key("40DCDA93-B5E8-33FB-B96F-47902CD5E5A0") # for NASS API queries
 options(scipen = 999)
 
 
-# NASS yields, planted area, harvested area ------------------------------------
+# yields, planted area, harvested area ------------------------------------
 
 #For NASS data, we run API queries
 
@@ -234,7 +234,7 @@ nass_land_use_final <- nass_land_use_6 %>%
 
 nass_land_use_final 
 
-# NASS chemicals (pesticides and fertilizers) -----------------------------
+# chemicals amounts (pesticides and fertilizers) -----------------------------
 
 #--list of calls to get applications in lbs for each crop
 short_desc_environmental <- 
@@ -275,9 +275,53 @@ nass_chemicals <-
   mutate(Value = as.numeric(str_remove_all(string = Value, pattern = ",")),
          Year = as.numeric(Year))
 
+# chemical applications (pesticides and fertilizers) -----------------------------
+
+#--list of calls to get applications in lbs/acre/application avg for each crop
+short_desc_apps <- 
+  read_csv("data_references/short_desc_applications.csv") %>% 
+  pull(1)
+
+#-empty dataframe
+apps_collector <- data.frame()
 
 
-# Number of passes for application energy and GHG emissions ---------------
+#--read in everything
+for (i in 1:length(short_desc_apps)) {
+  
+    tmp1 <- nass_data(source_desc = "SURVEY",
+                    sector_desc = "ENVIRONMENTAL",
+                    #group_desc = "FIELD CROPS", #--bc potatoes are a vegetable
+                    #short_desc = short_desc_apps[i],
+                    short_desc = short_desc_apps[i],
+                    agg_level_desc = "REGION : MULTI-STATE",
+                    year = ">=1980"
+  )
+  
+  apps_collector <- rbind(apps_collector, tmp1)
+  
+  print(paste(i, "out of", length(short_desc_apps)))
+  print(short_desc_apps[i])
+  Sys.sleep(0.5)
+}
+
+
+nass_apps <- 
+  apps_collector %>%
+  select(year, commodity_desc, short_desc, domain_desc, domaincat_desc, Value) %>% 
+  rename(Year = year,
+         Commodity = commodity_desc,
+         `Data Item` = short_desc,
+         Domain = domain_desc,
+         `Domain Category` = domaincat_desc) %>% 
+  mutate(Value = as.numeric(str_remove_all(string = Value, pattern = ",")),
+         Year = as.numeric(Year)) %>% 
+  as_tibble()
+
+
+
+
+# number of passes for application energy and GHG emissions ---------------
 
 #--says the avg applications
 num_passes_vector <- 
@@ -310,6 +354,7 @@ save(nass_land_use,
      corn_pct,
      nass_land_use_final,
      nass_chemicals,
+     nass_apps,
      sugarbeets_sucrose_pct,
      nass_num_passes,
      file = "data_raw/nass_data.rda")
