@@ -1,4 +1,4 @@
-commodity,class,btu_ac_app
-corn,herbicide,139110.94723242684
-corn,insecticide,18000.28903030303
-corn,fungicide,19156.647536213786
+crop,class,btu_ac_app,years_of_data
+corn,herbicide,139110.94723242684,2021 2018
+corn,insecticide,18000.28903030303,2021 2018
+corn,fungicide,19156.647536213786,2021 2018

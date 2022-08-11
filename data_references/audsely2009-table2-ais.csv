@@ -10,3 +10,6 @@ acetochlor,n,NA,275.8,intern must have assumed this is the same as s-metolachlor
 metolachlor,y,275.8,275.8,assumed same as s-metolachlor
 "2,4-d",y,87,87,
 dicamba,Y,295,295,
+glufosinate,n,NA,264.5,used average herbicide energy requirement
+mcpa,n,,518,used the other phenoxy herbicides value (fluazifop-butyl)
+bromoxynil octanoate,n,NA,264.5,used average herbicide energy requirement

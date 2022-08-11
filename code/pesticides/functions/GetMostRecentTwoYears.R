@@ -10,7 +10,7 @@ GetMostRecentTwoYears <- function(f.dat = chem,
                                   f.class = "herbicide") {
   chem %>% 
     ungroup() %>% 
-    filter(commodity == f.comm,
+    filter(crop == f.comm,
            class == f.class) %>% 
     select(year) %>% 
     distinct() %>% 
