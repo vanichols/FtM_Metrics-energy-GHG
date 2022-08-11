@@ -20,7 +20,7 @@ chem %>%
   pull(crop) %>% 
   unique()
 
-my_comm <- "wheat, winter"
+my_comm <- "rice"
 
 # herbicides ---------------------------------------------------------
 
@@ -58,7 +58,7 @@ ifelse (h0 %>%
         print("add more"))
 
 h0 %>% 
-  filter(cum_pct <0.85) %>% 
+  filter(cum_pct <0.90) %>% 
   group_by(year) %>% 
   mutate(n = 1:n())
 
@@ -82,7 +82,7 @@ h2 <-
 ifelse(sum(is.na(h2 %>%
               pull(intern_MJkg))) >0, 
        print("check"), 
-       print("ok"))
+       print("ais ok"))
 
 h3 <- 
   h2 %>% 
@@ -97,6 +97,8 @@ h3 <-
 h_final <- h3
 
 # fungicides -------------------------------------------------------
+
+#--- we have no data for fungicides in sorghum
 
 recent_yrs_f <- GetMostRecentTwoYears(f.dat = chem,
                                       f.comm = my_comm,
@@ -181,7 +183,6 @@ res <-
   h_final %>% 
   bind_rows(i_final) %>% 
   bind_rows(f_final) %>% 
-  mutate(years_of_data = hif_years)
-
+  mutate(years_of_data = as.character(hif_years))
 res %>% 
-  write_csv("data_tidy/pest_energy_wheat-winter.csv")
+  write_csv("data_tidy/pest_energy_rice.csv")

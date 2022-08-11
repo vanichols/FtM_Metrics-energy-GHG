@@ -6,10 +6,28 @@ looking at Table 2 from audsely et al. 2009,,,,
 ai,in_audsley,energy_MJkg,intern_MJkg,notes
 glyphosate,y,454,454,
 atrazine,y,188.3,188,
-acetochlor,n,NA,275.8,intern must have assumed this is the same as s-metolachlor
+acetochlor,n,,275.8,intern must have assumed this is the same as s-metolachlor
 metolachlor,y,275.8,275.8,assumed same as s-metolachlor
 "2,4-d",y,87,87,
 dicamba,Y,295,295,
-glufosinate,n,NA,264.5,used average herbicide energy requirement
+glufosinate,n,,264.5,used average herbicide energy requirement
 mcpa,n,,518,used the other phenoxy herbicides value (fluazifop-butyl)
-bromoxynil octanoate,n,NA,264.5,used average herbicide energy requirement
+bromoxynil octanoate,n,,264.5,used average herbicide energy requirement
+paraquat,y,459.4,459.4,
+trifluralin,y,150.9,150.9,
+diuron,y,274.5,274.5,
+pendimethalin,n,,80,"assume dinoseb, which is in the nitro family of chemicals as well"
+metribuzin,n,,264.5,used average herbicide energy requirement
+dimethenamid-p,n,,265.825,"use average of propanil, alachlor, propacholr, and metolachlor (from the acetamide family)"
+eptc,y,159.8,159.8,
+ethalfluralin,n,,264.5,used average herbicide energy requirement
+propanil,y,220,220,
+thiobencarb,n,,264.5,used average herbicide energy requirement
+clomazone,n,,264.5,used average herbicide energy requirement
+fluroxypyr,n,,264.5,used average herbicide energy requirement
+desmedipham,n,,265.5,used average herbicide energy requirement
+phenmedipham,n,,266.5,used average herbicide energy requirement
+cycloate,n,,267.5,used average herbicide energy requirement
+clopyralid,n,,268.5,used average herbicide energy requirement
+clethodim,n,,269.5,used average herbicide energy requirement
+ethofumesate,n,,269.5,used average herbicide energy requirement

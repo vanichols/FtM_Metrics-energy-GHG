@@ -20,7 +20,7 @@ chem %>%
   pull(crop) %>% 
   unique()
 
-my_comm <- "soybeans"
+my_comm <- "wheat, spring, (excl durum)"
 
 # herbicides ---------------------------------------------------------
 
@@ -66,7 +66,7 @@ h0 %>%
 h1 <- 
   h0%>% 
   group_by(year) %>% 
-  slice_min(cum_pct, n = 5)
+  slice_min(cum_pct, n = 4)
 
 h1
 
@@ -82,7 +82,7 @@ h2 <-
 ifelse(sum(is.na(h2 %>%
               pull(intern_MJkg))) >0, 
        print("check"), 
-       print("ok"))
+       print("ais ok"))
 
 h3 <- 
   h2 %>% 
@@ -181,7 +181,7 @@ res <-
   h_final %>% 
   bind_rows(i_final) %>% 
   bind_rows(f_final) %>% 
-  mutate(years_of_data = hif_years)
+  mutate(years_of_data = as.character(hif_years))
 
 res %>% 
-  write_csv("data_tidy/pest_energy_soybeans.csv")
+  write_csv("data_tidy/pest_energy_wheat-spring.csv")
