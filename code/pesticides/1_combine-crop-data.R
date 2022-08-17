@@ -49,6 +49,17 @@ d <-
   bind_rows(d2)
 
 
+# create table that lists mos updated data years --------------------------
+
+d %>% 
+  select(-btu_ac_app) %>% 
+  mutate(years_of_data = str_replace(years_of_data, " ", ", ")) %>% 
+  pivot_wider(names_from = class,
+              values_from = years_of_data) %>% 
+  write_csv("data_tidy/pest_energy_years-of-data-source.csv")
+  
+  
+
 # wrangle -----------------------------------------------------------------
 
 d %>% 
