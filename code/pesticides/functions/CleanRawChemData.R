@@ -1,14 +1,14 @@
 library(tidyverse)
 
-pest_codes <- read_csv("data_references/pesticide_codes.csv")
-
 
 # takes in raw NASS data from 1_get-NASS-data and creates a df with
 #  lbsai per ac per pass and total lbs ai 
 
 CleanRawChemData <- function(f.dapps = nass_apps_final,
                              f.dchems = nass_chemicals_final) {
-  
+
+  pest_codes <- read_csv("data_references/pesticide_codes.csv")
+    
   #--remove fertilizer applications, combine amount per application with total amounts
   chem_app <- 
     f.dapps %>% 
@@ -56,12 +56,10 @@ CleanRawChemData <- function(f.dapps = nass_apps_final,
     select(-class_full) %>% 
     #--remove the old others, replace with newly assigned others
     filter(!class == "other") %>% 
-    bind_rows(chem_other)
+    bind_rows(chem_other) %>% 
+    filter(class %in% 
+             c("fungicide", "herbicide", "insecticide", "growth reg", "fumigant"))
   
   
 }
-  
-
-chem %>% 
-  pull(class) %>% 
-  unique()
+ 

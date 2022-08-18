@@ -1,4 +1,5 @@
 crop,class,btu_ac_app,years_of_data
-peanuts,herbicide,79966.5247670951,2018 2013
-peanuts,insecticide,26654.732630303028,2018 2013
-peanuts,fungicide,23839.065358585853,2018 2013
+cotton,herbicide,NA,2021 2019
+cotton,insecticide,13277.426803119324,2021 2019
+cotton,fungicide,6694.730409090908,2021 2019
+cotton,growth reg,8553.992727272725,2021 2019

@@ -1,6 +1,8 @@
 # purpose: create data to feed into Energy Table 3 
 # author: Gina Nichols
 # created: 8/11/22
+# updated: 8/17/22 - look at NASS's pesticide classes
+
 
 # NOTE: using Allison's intern's apporach - could be improved
 
@@ -13,6 +15,11 @@ library(tidyverse)
 # startup -----------------------------------------------------------------
 
 source("code/pesticides/functions/StartUp.R")
+
+chem %>% 
+  pull(class) %>% 
+  unique()
+
 
 # specify crop ------------------------------------------------------------
 
@@ -169,6 +176,78 @@ i3 <-
   summarise(btu_ac_app = mean(btu_ac_app)) 
 
 i_final <- i3
+
+
+# growth reg -------------------------------------------------------
+
+recent_yrs_g <- GetMostRecentTwoYears(f.dat = chem,
+                                      f.comm = my_comm,
+                                      f.class = "growth reg")
+
+recent_yrs_g
+
+# #--note we don't have specific values for each ai, so we use the average (?)
+# 
+# g1 <- 
+#   chem %>% 
+#   filter(crop == my_comm,
+#          class == "growth reg",
+#          year %in% recent_yrs_i) %>% 
+#   arrange(-lbsai) %>% 
+#   group_by(year, crop, class) %>% 
+#   #--sum amounts, but averaged the lbs/ac/app
+#   summarise(lbsai_ac_app = mean(lbsai_ac_app),
+#             lbsai = sum(lbsai)) 
+# 
+# #--make sure ais are in ref table
+# g2 <- 
+#   g1 %>% 
+#   left_join(ref_class_energy)
+# 
+# g3 <- 
+#   g2 %>% 
+#   mutate(energy_btulb = ConvMJkgToBTUlb(energy_MJkgai),
+#          btu_ac_app = lbsai_ac_app * energy_btulb)  %>% 
+#   group_by(crop, class) %>% 
+#   summarise(btu_ac_app = mean(btu_ac_app)) 
+# 
+# g_final <- g3
+
+
+#  fumigant -------------------------------------------------------
+
+recent_yrs_fu <- GetMostRecentTwoYears(f.dat = chem,
+                                      f.comm = my_comm,
+                                      f.class = "fumigant")
+
+recent_yrs_fu
+
+# #--note we don't have specific values for each ai, so we use the average (?)
+# 
+# fu1 <- 
+#   chem %>% 
+#   filter(crop == my_comm,
+#          class == "fumigant",
+#          year %in% recent_yrs_i) %>% 
+#   arrange(-lbsai) %>% 
+#   group_by(year, crop, class) %>% 
+#   #--sum amounts, but averaged the lbs/ac/app
+#   summarise(lbsai_ac_app = mean(lbsai_ac_app),
+#             lbsai = sum(lbsai)) 
+# 
+# #--make sure ais are in ref table
+# fu2 <- 
+#   fu1 %>% 
+#   left_join(ref_class_energy)
+# 
+# fu3 <- 
+#   fu2 %>% 
+#   mutate(energy_btulb = ConvMJkgToBTUlb(energy_MJkgai),
+#          btu_ac_app = lbsai_ac_app * energy_btulb)  %>% 
+#   group_by(crop, class) %>% 
+#   summarise(btu_ac_app = mean(btu_ac_app)) 
+# 
+# fu_final <- fu3
 
 
 # final -------------------------------------------------------------------

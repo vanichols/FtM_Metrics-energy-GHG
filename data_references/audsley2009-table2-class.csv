@@ -1,9 +1,12 @@
 ﻿Table 2 from Audsley et al. 2009,
 "Extract herbicide, fungicide, and insecticide average values",
 "From the first section of the table, second section, and third, respectively",
-,
+"Growth reg and seed treatment comes from Table 1, which is not right. It is completely stupid to take these values. No idea where fumigant values come from, assumed same as insecticide for now.",
 ,
 class,energy_MJkgai
 herbicide,264.5
 fungicide,173
 insecticide,214.4
+growth reg,276
+seed trt,511
+fumigant,214.4
